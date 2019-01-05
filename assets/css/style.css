@@ -1,0 +1,42 @@
+body {
+    background-color: #cdd7d6;
+}
+
+.footer {
+    position: absolute;
+    bottom: 0;
+    width: 100%;
+    height: 60px;
+    line-height: 60px;
+    background-color: #DBDBDB;
+}
+
+.gifDeck {
+    border: 3px solid #DBDBDB;
+    padding: 20px;
+    border-radius: 8px;
+    box-shadow: 5px 5px #888888;
+}
+
+.gifSearch {
+    border: 3px solid #DBDBDB;
+    padding: 20px;
+    border-radius: 8px;
+    box-shadow: 5px 5px #888888;
+}
+
+#submit {
+    width: 100%;
+}
+
+.jumbotron {
+    background-color: transparent;
+}
+
+nav {
+    background-color: #DBDBDB;
+}
+
+h3 {
+    margin-top: 15px;
+}
