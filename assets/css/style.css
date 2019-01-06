@@ -9,7 +9,7 @@ body {
     width: 100%;
     height: 60px;
     line-height: 60px;
-    background-color: #DBDBDB;
+    background-color: #ffffff;
 }
 
 .gifDeck {
@@ -32,10 +32,6 @@ body {
 
 .jumbotron {
     background-color: transparent;
-}
-
-nav {
-    background-color: #DBDBDB;
 }
 
 h3 {
