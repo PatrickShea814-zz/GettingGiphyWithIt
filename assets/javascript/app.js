@@ -10,11 +10,12 @@ $(document).ready(function () {
         miscTopics = [''];
         $('#miscDrop').empty();
     };
-
+    function emptyDeck() {
+        $('.gifDeck').empty();
+    };
    
-
     function displayGifs() {
-        
+        emptyDeck();
         var GIF = $(this).attr("data-name");
         var queryURL = "https://api.giphy.com/v1/gifs/search?q=" +
             GIF + "&api_key=Fay4IAT6SPFWBYL7iiscJsZSB2j8B69D&limit=10";
@@ -28,12 +29,16 @@ $(document).ready(function () {
 
                 for (var i = 0; i < results.length; i++) {
                     var gifCards = $("<div class='card'>");
-
+                    var gifRating = $("<h6 class='card-title'>");
                     var gifImage = $("<img>");
+                    var rating = results[i].rating.toUpperCase();
+
                     gifImage.attr("src", results[i].images.fixed_height.url);
+                    gifRating.text("Rated: " + rating);
 
 
                     gifCards.prepend(gifImage);
+                    gifCards.append(gifRating);
 
                     $('.gifDeck').prepend(gifCards);
                 }
@@ -85,6 +90,7 @@ $(document).ready(function () {
 
     $('#submit').on("click", function (event) {
         event.preventDefault();
+        emptyDeck();
         
         var gifSearch = $('#searchText').val().trim();
         var lowerGifSearch = gifSearch.toLowerCase();

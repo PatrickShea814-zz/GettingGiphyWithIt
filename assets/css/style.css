@@ -1,5 +1,6 @@
 body {
     background-color: #cdd7d6;
+    font-family: 'Nixie One', cursive;
 }
 
 .footer {
@@ -39,4 +40,28 @@ nav {
 
 h3 {
     margin-top: 15px;
+}
+
+h5 {
+    font-family: 'Bungee Inline', cursive;
+}
+
+h6 {
+    font-family: 'Nixie One', cursive;
+    text-align: center;
+}
+
+.card-title {
+    text-align: center;
+}
+
+.gifCards {
+    display: flex;
+    flex-wrap: wrap;
+    width: 200px;
+}
+
+.gifDeck {
+    display: flex;
+    flex-wrap: wrap;
 }
