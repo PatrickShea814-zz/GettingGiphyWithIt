@@ -43,6 +43,7 @@ $(document).ready(function () {
                     gifImage.attr("data-animate", results[i].images.fixed_height.url);
                     gifImage.attr("data-state", "still");
                     gifImage.addClass("gif");
+                    
 
                     $('.gifDeck').prepend(gifCards);
                 }
@@ -126,7 +127,7 @@ $(document).ready(function () {
         searchGif(gifSearch);
     });
 
-    $(document).on("click", ".gif", function() {
+    $(document).on("mouseenter", ".gif", function() {
         var state = $(this).attr("data-state");
         event.preventDefault();
 
