@@ -58,6 +58,9 @@ h5 {
 h6 {
     font-family: 'Nixie One', cursive;
     text-align: center;
+    color: #595358;
+    margin-top: 10px;
+    font-size: 1.25em
 }
 
 .card-title {
