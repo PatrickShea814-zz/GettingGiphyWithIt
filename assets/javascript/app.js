@@ -43,13 +43,16 @@ $(document).ready(function () {
                     var shortText = jQuery.trim(title).substring(0, 25).split(" ").slice(0, -1).join(" ") + "...";
                     var gifDL = $('<a href="url" target="_blank" class="downloadLink btn btn-outline-primary fa fa-download"> Download</a>');
 
-
-                    gifImage.attr("src", results[i].images.fixed_height.url);
                     gifRating.text("Rated: " + rating);
                     gifTitle.text(shortText);
                     gifCards.attr("title", results[i].title);
+                    gifDL.attr("href", results[i].images.fixed_height.url);
 
-                    gifDL.attr("href", results[i].images.fixed_width.url);
+                    gifImage.attr("src", results[i].images.fixed_height_still.url);
+                    gifImage.attr("data-still", results[i].images.fixed_height_still.url);
+                    gifImage.attr("data-animate", results[i].images.fixed_height.url);
+                    gifImage.attr("data-state", "still");
+                    gifImage.addClass("gif");
 
                     gifCards.prepend(gifImage);
                     gifCards.prepend(gifTitle);
@@ -83,12 +86,16 @@ $(document).ready(function () {
                     var shortText = jQuery.trim(title).substring(0, 25).split(" ").slice(0, -1).join(" ") + "...";
                     var gifDL = $('<a href="url" target="_blank" class="downloadLink btn btn-outline-primary fa fa-download"> Download</a>');
 
-
-                    gifImage.attr("src", results[i].images.fixed_height.url);
                     gifRating.text("Rated: " + rating);
                     gifTitle.text(shortText);
                     gifCards.attr("title", results[i].title);
-                    gifDL.attr("href", results[i].images.fixed_width.url);
+                    gifDL.attr("href", results[i].images.fixed_height.url);
+
+                    gifImage.attr("src", results[i].images.fixed_height_still.url);
+                    gifImage.attr("data-still", results[i].images.fixed_height_still.url);
+                    gifImage.attr("data-animate", results[i].images.fixed_height.url);
+                    gifImage.attr("data-state", "still");
+                    gifImage.addClass("gif");
 
                     gifCards.prepend(gifImage);
                     gifCards.prepend(gifTitle);
@@ -122,11 +129,16 @@ $(document).ready(function () {
                     var shortText = jQuery.trim(title).substring(0, 25).split(" ").slice(0, -1).join(" ") + "...";
                     var gifDL = $('<a href="url" target="_blank" class="downloadLink btn btn-outline-primary fa fa-download"> Download</a>');
 
-                    gifImage.attr("src", results[i].images.fixed_height.url);
                     gifRating.text("Rated: " + rating);
                     gifTitle.text(shortText);
                     gifCards.attr("title", results[i].title);
-                    gifDL.attr("href", results[i].images.fixed_width.url);
+                    gifDL.attr("href", results[i].images.fixed_height.url);
+
+                    gifImage.attr("src", results[i].images.fixed_height_still.url);
+                    gifImage.attr("data-still", results[i].images.fixed_height_still.url);
+                    gifImage.attr("data-animate", results[i].images.fixed_height.url);
+                    gifImage.attr("data-state", "still");
+                    gifImage.addClass("gif");
 
                     gifCards.prepend(gifImage);
                     gifCards.prepend(gifTitle);
@@ -186,6 +198,19 @@ $(document).ready(function () {
     });
 
     $(document).on("mouseenter", ".gif", function () {
+        var state = $(this).attr("data-state");
+        event.preventDefault();
+
+        if (state === "still") {
+            $(this).attr("src", $(this).attr("data-animate"));
+            $(this).attr("data-state", "animate");
+        } else {
+            $(this).attr("src", $(this).attr("data-still"));
+            $(this).attr("data-state", "still");
+        }
+    });
+
+    $(document).on("mouseleave", ".gif", function () {
         var state = $(this).attr("data-state");
         event.preventDefault();
 

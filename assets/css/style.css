@@ -20,7 +20,6 @@ body {
 }
 
 .gifDeck {
-
     border: 3px solid #ffffff;
     padding: 20px;
     border-radius: 8px;
@@ -71,6 +70,10 @@ h6 {
     display: flex;
     flex-wrap: wrap;
     width: 200px;
+}
+
+.card-deck {
+    
 }
 
 .btn {
