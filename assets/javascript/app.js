@@ -44,6 +44,7 @@ $(document).ready(function () {
                 }
             });
     };
+    princeGifs();
 
     function displayGifs() {
         emptyDeck();
@@ -140,6 +141,7 @@ $(document).ready(function () {
             $('#starWarsDrop').prepend(dropItem);
         };
     };
+    createButtons();
 
     $('.home').on('click', home);
 
@@ -181,6 +183,4 @@ $(document).ready(function () {
     $('.clearSearch').on('click', clearSearch);
 
     $(document).on("click", ".gif-btn", displayGifs);
-    createButtons();
-    princeGifs();
 });
