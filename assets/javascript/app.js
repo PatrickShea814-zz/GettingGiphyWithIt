@@ -12,7 +12,7 @@ $(document).ready(function () {
         princeGifs()();
     };
     function emptyDeck() {
-        $('.gifDeck').empty();
+        $('.gifCards').delete();
     };
 
     function home() {
