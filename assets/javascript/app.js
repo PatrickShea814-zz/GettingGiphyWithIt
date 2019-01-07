@@ -9,6 +9,7 @@ $(document).ready(function () {
         $('.gifDeck').empty();
         miscTopics = [''];
         $('#miscDrop').empty();
+        princeGifs()();
     };
     function emptyDeck() {
         $('.gifDeck').empty();
@@ -80,15 +81,16 @@ $(document).ready(function () {
             });
     };
 
-    function searchGif(search) {
+    function searchGif() {
+        emptyDeck();
+        var gifSearch = $('#searchText').val().trim();
         var queryURL = "https://api.giphy.com/v1/gifs/search?q=" +
-            search + "&api_key=Fay4IAT6SPFWBYL7iiscJsZSB2j8B69D&limit=10";
+            gifSearch + "&api_key=Fay4IAT6SPFWBYL7iiscJsZSB2j8B69D&limit=10";
 
         $.ajax({
             url: queryURL,
             method: "GET"
         })
-
             .then(function (response) {
                 var results = response.data;
 
@@ -96,6 +98,7 @@ $(document).ready(function () {
                     var gifCards = $("<div class='card'>");
                     var gifRating = $("<h6 class='card-title'>");
                     var gifImage = $("<img>");
+                    var rating = results[i].rating.toUpperCase();
 
                     gifImage.attr("src", results[i].images.fixed_height_still.url);
                     gifRating.text("Rated: " + rating);
@@ -107,6 +110,7 @@ $(document).ready(function () {
                     gifImage.attr("data-animate", results[i].images.fixed_height.url);
                     gifImage.attr("data-state", "still");
                     gifImage.addClass("gif");
+
 
                     $('.gifDeck').prepend(gifCards);
                 }
@@ -155,8 +159,10 @@ $(document).ready(function () {
             dropItem.text(upperGifSearch);
 
             $('#miscDrop').prepend(dropItem);
+            searchGif();
+        } else {
+            searchGif();
         }
-        searchGif(gifSearch);
     });
 
     $(document).on("mouseenter", ".gif", function () {
