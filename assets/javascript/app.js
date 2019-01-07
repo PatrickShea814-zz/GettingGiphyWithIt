@@ -14,6 +14,11 @@ $(document).ready(function () {
         $('.gifDeck').empty();
     };
 
+    function home() {
+        emptyDeck();
+        princeGifs();
+    };
+
     function princeGifs() {
         var GIF = "fresh-prince-dance";
         var queryURL = "https://api.giphy.com/v1/gifs/search?q=" +
@@ -131,6 +136,8 @@ $(document).ready(function () {
             $('#starWarsDrop').prepend(dropItem);
         };
     };
+
+    $('.home').on('click', home);
 
     $('#submit').on("click", function (event) {
         event.preventDefault();
