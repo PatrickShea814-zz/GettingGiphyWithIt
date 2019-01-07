@@ -13,7 +13,32 @@ $(document).ready(function () {
     function emptyDeck() {
         $('.gifDeck').empty();
     };
-   
+
+    function princeGifs() {
+        var GIF = "fresh-prince-dance";
+        var queryURL = "https://api.giphy.com/v1/gifs/search?q=" +
+            GIF + "&api_key=Fay4IAT6SPFWBYL7iiscJsZSB2j8B69D&limit=5";
+
+        $.ajax({
+            url: queryURL,
+            method: "GET"
+        })
+            .then(function (response) {
+                var results = response.data;
+
+                for (var i = 0; i < results.length; i++) {
+                    var gifCards = $("<div class='card'>");
+                    var gifImage = $("<img>");
+
+                    gifImage.attr("src", results[i].images.fixed_height.url);
+
+                    gifCards.prepend(gifImage);
+
+                    $('.gifDeck').prepend(gifCards);
+                }
+            });
+    };
+
     function displayGifs() {
         emptyDeck();
         var GIF = $(this).attr("data-name");
@@ -43,7 +68,7 @@ $(document).ready(function () {
                     gifImage.attr("data-animate", results[i].images.fixed_height.url);
                     gifImage.attr("data-state", "still");
                     gifImage.addClass("gif");
-                    
+
 
                     $('.gifDeck').prepend(gifCards);
                 }
@@ -110,11 +135,11 @@ $(document).ready(function () {
     $('#submit').on("click", function (event) {
         event.preventDefault();
         emptyDeck();
-        
+
         var gifSearch = $('#searchText').val().trim();
         var lowerGifSearch = gifSearch.toLowerCase();
         var upperGifSearch = gifSearch.charAt(0).toUpperCase() + gifSearch.slice(1);
-        
+
         if (miscTopics.indexOf(upperGifSearch) === -1 && movieTopics.indexOf(upperGifSearch) === -1 && actorsTopics.indexOf(upperGifSearch) === -1 && starWarsTopics.indexOf(upperGifSearch) === -1 && miscTopics.indexOf(upperGifSearch) === -1) {
             miscTopics.push(upperGifSearch);
             var dropItem = $("<a class='dropdown-item'>");
@@ -127,7 +152,7 @@ $(document).ready(function () {
         searchGif(gifSearch);
     });
 
-    $(document).on("mouseenter", ".gif", function() {
+    $(document).on("mouseenter", ".gif", function () {
         var state = $(this).attr("data-state");
         event.preventDefault();
 
@@ -144,4 +169,5 @@ $(document).ready(function () {
 
     $(document).on("click", ".gif-btn", displayGifs);
     createButtons();
+    princeGifs();
 });
