@@ -119,3 +119,8 @@ h6 {
 		background-position: 0% 50%
 	}
 }
+
+.downloadLink {
+    margin-bottom: 10px;
+    padding-top: 10px;
+}
