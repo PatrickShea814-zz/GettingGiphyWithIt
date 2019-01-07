@@ -19,6 +19,7 @@ $(document).ready(function () {
         emptyDeck();
         princeGifs();
     };
+    
 
     function princeGifs() {
         var GIF = "fresh-prince-dance";
@@ -34,12 +35,26 @@ $(document).ready(function () {
 
                 for (var i = 0; i < results.length; i++) {
                     var gifCards = $("<div class='card'>");
+                    var gifRating = $("<h6 class='card-title'>");
+                    var gifTitle = $("<h6 class='card-title'>");
                     var gifImage = $("<img>");
+                    var rating = results[i].rating.toUpperCase();
+                    var title = results[i].title;
+                    var shortText = jQuery.trim(title).substring(0, 25).split(" ").slice(0, -1).join(" ") + "...";
+                    var gifDL = $('<a href="url" target="_blank" class="downloadLink btn btn-outline-primary fa fa-download"> Download</a>');
+
 
                     gifImage.attr("src", results[i].images.fixed_height.url);
+                    gifRating.text("Rated: " + rating);
+                    gifTitle.text(shortText);
+                    gifCards.attr("title", results[i].title);
+
+                    gifDL.attr("href", results[i].images.fixed_width.url);
 
                     gifCards.prepend(gifImage);
-
+                    gifCards.prepend(gifTitle);
+                    gifCards.append(gifRating);
+                    gifCards.append(gifDL);
                     $('.gifDeck').prepend(gifCards);
                 }
             });
@@ -61,21 +76,24 @@ $(document).ready(function () {
                 for (var i = 0; i < results.length; i++) {
                     var gifCards = $("<div class='card'>");
                     var gifRating = $("<h6 class='card-title'>");
+                    var gifTitle = $("<h6 class='card-title'>");
                     var gifImage = $("<img>");
                     var rating = results[i].rating.toUpperCase();
+                    var title = results[i].title;
+                    var shortText = jQuery.trim(title).substring(0, 25).split(" ").slice(0, -1).join(" ") + "...";
+                    var gifDL = $('<a href="url" target="_blank" class="downloadLink btn btn-outline-primary fa fa-download"> Download</a>');
 
-                    gifImage.attr("src", results[i].images.fixed_height_still.url);
+
+                    gifImage.attr("src", results[i].images.fixed_height.url);
                     gifRating.text("Rated: " + rating);
+                    gifTitle.text(shortText);
+                    gifCards.attr("title", results[i].title);
+                    gifDL.attr("href", results[i].images.fixed_width.url);
 
                     gifCards.prepend(gifImage);
+                    gifCards.prepend(gifTitle);
                     gifCards.append(gifRating);
-
-                    gifImage.attr("data-still", results[i].images.fixed_height_still.url);
-                    gifImage.attr("data-animate", results[i].images.fixed_height.url);
-                    gifImage.attr("data-state", "still");
-                    gifImage.addClass("gif");
-
-
+                    gifCards.append(gifDL);
                     $('.gifDeck').prepend(gifCards);
                 }
             });
@@ -97,21 +115,23 @@ $(document).ready(function () {
                 for (var i = 0; i < results.length; i++) {
                     var gifCards = $("<div class='card'>");
                     var gifRating = $("<h6 class='card-title'>");
+                    var gifTitle = $("<h6 class='card-title'>");
                     var gifImage = $("<img>");
                     var rating = results[i].rating.toUpperCase();
+                    var title = results[i].title;
+                    var shortText = jQuery.trim(title).substring(0, 25).split(" ").slice(0, -1).join(" ") + "...";
+                    var gifDL = $('<a href="url" target="_blank" class="downloadLink btn btn-outline-primary fa fa-download"> Download</a>');
 
-                    gifImage.attr("src", results[i].images.fixed_height_still.url);
+                    gifImage.attr("src", results[i].images.fixed_height.url);
                     gifRating.text("Rated: " + rating);
+                    gifTitle.text(shortText);
+                    gifCards.attr("title", results[i].title);
+                    gifDL.attr("href", results[i].images.fixed_width.url);
 
                     gifCards.prepend(gifImage);
+                    gifCards.prepend(gifTitle);
                     gifCards.append(gifRating);
-
-                    gifImage.attr("data-still", results[i].images.fixed_height_still.url);
-                    gifImage.attr("data-animate", results[i].images.fixed_height.url);
-                    gifImage.attr("data-state", "still");
-                    gifImage.addClass("gif");
-
-
+                    gifCards.append(gifDL);
                     $('.gifDeck').prepend(gifCards);
                 }
             });
@@ -183,4 +203,8 @@ $(document).ready(function () {
     $(document).on("click", ".gif-btn", displayGifs);
     createButtons();
     princeGifs();
+    $(".downloadButton").click(function(){
+        var href = $('.downloadLink').attr('href');
+        window.location.href = href;
+       });
 });
